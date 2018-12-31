@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
-import { View, Text} from 'react-native';
+import { View, ScrollView} from 'react-native';
 import axios from 'axios'; 
+import PhotoSection from './Photo-Section';
 
 export default class PhotoFeed extends Component { 
     state = { photos: [{username: ''}] };
 
     componentDidMount() {  // called before render() function is called
         axios.get('http://localhost:3000/photos')
-        .then(response => {
-            console.log(response.status);
-            this.setState({ photos: response.data });  // triggers re-render
-
+        .then(response => { 
+            this.setState({ photos: response.data });  // triggers re-render 
         });
     }
 
+    getPhotos() {
+        return this.state.photos.map( (_photo, index) => {
+            return (
+                <PhotoSection key={index} photo={_photo} />
+            );    
+        });
+    }
     render() {  
         return (
-            <View>
-                <Text> {this.state.photos[0].username} </Text>
-            </View>
+            <ScrollView>
+                {this.getPhotos()}
+            </ScrollView>
         );
     }
 }

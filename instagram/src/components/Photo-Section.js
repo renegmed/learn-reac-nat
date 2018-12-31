@@ -5,21 +5,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class PhotoSection extends Component { 
 
     render() {
+        const { username, user_avatar, image, caption } = this.props.photo;
         return (
             <View style={styles.container}>
                 <View style={styles.thumbnailSection}>
                     <Image 
                         style={styles.thumbnail}
-                        source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/CandymyloveYasu.png/440px-CandymyloveYasu.png'}}
+                        source={{uri: `${user_avatar}`}}
                     />
                     <View style={styles.userContainer}>
-                        <Text style={styles.username}>username</Text>
+                        <Text style={styles.username}>{username}</Text>
                     </View>
                 </View> 
                 <View>
                     <Image 
                         style={{width: null, height: 400}}
-                        source={{uri: 'https://thepointsguy.com/wp-content/uploads/2017/12/GettyImages-559540301.jpg'}}
+                        source={{uri:  `${image}`}}
                     />
                 </View>
                 <View style={styles.heartContainer}>
@@ -30,8 +31,8 @@ export default class PhotoSection extends Component {
 
                 </View>
                 <View style={styles.imageMeta}>
-                    <Text style={styles.username}>username</Text>
-                    <Text>caption</Text>
+                    <Text style={styles.username}>{username}</Text>
+                    <Text>{caption}</Text>
                 </View>
             </View>
         );
