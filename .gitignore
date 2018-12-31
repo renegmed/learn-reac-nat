@@ -8,3 +8,9 @@ instagram/.expo
 instagram/ios
 
 
+authentication/node_modules
+authentication/package-lock.json
+authentication/yarn.lock
+authentication/*.swp
+authentication/.expo
+authentication/ios
