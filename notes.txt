@@ -25,4 +25,5 @@ Redux for complex app
 
     $ yarn add redux react-redux 
     
-
+For asyc call on Redux
+    $ yarn add redux-thunk
