@@ -3,8 +3,10 @@ import { View } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
 import InnerSection from './Inner-Section'; 
+import { authInputChange } from '../actions';
+import { connect } from 'react-redux';
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
     
     componentDidMount() {
         const config = {
@@ -23,10 +25,17 @@ export default class LoginForm extends React.Component {
         return (
             <View style={styles.container}> 
                 <InnerSection>
-                    <FormInput placeholder="Email" />
+                    <FormInput placeholder="Email" onChangeText={text => this.props.authInputChange({
+                        'field': 'email',
+                        'value': text,
+                        })}/>
                 </InnerSection>
                 <InnerSection>
-                    <FormInput placeholder="Password" secureTextEntry={true}/>
+                    <FormInput placeholder="Password" secureTextEntry={true} 
+                        onChangeText={text => this.props.authInputChange({
+                            'field': 'password',
+                            'value': text,
+                        })}/>
                 </InnerSection>
                 <InnerSection>
                     <Button title="Login" backgroundColor={'#3bd3d4'}/>
@@ -41,3 +50,5 @@ const styles = {
         marginTop: 50
     }
 }
+
+export default connect(null, {authInputChange})(LoginForm);
