@@ -1,0 +1,10 @@
+*.swp
+
+instagram/node_modules
+instagram/package-lock.json
+instagram/yarn.lock
+instagram/*.swp
+instagram/expo
+instagram/ios
+
+

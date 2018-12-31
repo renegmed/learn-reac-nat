@@ -1,0 +1,9 @@
+
+$ npm i -g create-react-native-app
+
+Instagram
+
+$ npm install 
+
+$ yarn run ios
+
