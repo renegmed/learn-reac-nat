@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Button } from 'react-native';
+import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class PhotoSection extends Component { 
+    constructor() {
+        super();
 
+        this.like = false;
+        this.state = { heartIcon: 'ios-heart-empty'}
+    }
+
+    toggleLike() { 
+        this.like = !this.like;
+        if (this.like) {
+            this.setState( { heartIcon: 'ios-heart'} );
+        } else {
+            this.setState( { heartIcon: 'ios-heart-empty'} );
+        }
+    }
     render() {
         const { username, user_avatar, image, caption } = this.props.photo;
         return (
@@ -24,11 +38,13 @@ export default class PhotoSection extends Component {
                     />
                 </View>
                 <View style={styles.heartContainer}>
-                    <Ionicons 
-                        name='ios-heart-empty'
-                        size={30}
-                    />
-
+                    <TouchableWithoutFeedback onPress={this.toggleLike.bind(this)}>
+                        <Ionicons 
+                            name={this.state.heartIcon}
+                            size={30}
+                            style={{ color: this.state.heartIcon == 'ios-heart'? 'red': 'black'}}
+                        />
+                    </TouchableWithoutFeedback>
                 </View>
                 <View style={styles.imageMeta}>
                     <Text style={styles.username}>{username}</Text>
@@ -73,7 +89,7 @@ const styles = {
     },
 
     heartContainer: {
-        paddingTop: 10,
-        paddingBottom: 10,
+        paddingTop: 2,
+        paddingBottom: 2,
     }
 }
