@@ -8,3 +8,9 @@ $ npm install
 $ yarn run ios
 
 $ yarn add react-native-vector-icons
+
+To generate fake api data
+
+    $ npm install -g json-server
+
+    $ json-server db.json
