@@ -20,4 +20,9 @@ Axios - accessing api
 
     $ yarn add Axios
 
+
+Redux for complex app
+
+    $ yarn add redux react-redux 
     
+
