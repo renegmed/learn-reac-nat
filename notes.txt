@@ -14,3 +14,10 @@ To generate fake api data
     $ npm install -g json-server
 
     $ json-server db.json
+
+
+Axios - accessing api
+
+    $ yarn add Axios
+
+    

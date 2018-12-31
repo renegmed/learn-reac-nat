@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Header from './src/components/Header';
-import PhotoSection from './src/components/Photo-Section';
+import PhotoFeed from './src/components/Photo-Feed';
  
 export default class App extends React.Component {
   
@@ -9,8 +9,7 @@ export default class App extends React.Component {
     return (
       <View> 
         <Header text="Photos" />
-        <PhotoSection />
-        <PhotoSection />
+        <PhotoFeed /> 
       </View>
     );
   }
