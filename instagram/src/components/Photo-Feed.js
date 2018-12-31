@@ -1,30 +1,35 @@
 import React, { Component } from 'react';
-import { View, ScrollView} from 'react-native';
-import axios from 'axios'; 
+import { View, ScrollView} from 'react-native'; 
 import PhotoSection from './Photo-Section';
+import { connect } from 'react-redux';
+import { getPhotos } from '../actions';
 
-export default class PhotoFeed extends Component { 
-    state = { photos: [{username: ''}] };
-
-    componentDidMount() {  // called before render() function is called
-        axios.get('http://localhost:3000/photos')
-        .then(response => { 
-            this.setState({ photos: response.data });  // triggers re-render 
-        });
+class PhotoFeed extends Component { 
+    
+    componentWillMount() {  // called before render() function is called
+        this.props.getPhotos();
     }
 
-    getPhotos() {
-        return this.state.photos.map( (_photo, index) => {
+    renderPhotos() {
+        return this.props.photos.map( (_photo) => {
+            console.log("[Photo-Feed] renderPhotos:", _photo.id);
             return (
-                <PhotoSection key={index} photo={_photo} />
+                <PhotoSection key={_photo.id} photo={_photo} />
             );    
         });
     }
     render() {  
         return (
             <ScrollView>
-                {this.getPhotos()}
+                {this.renderPhotos()}
             </ScrollView>
         );
     }
 }
+
+function mapStateToProps(state) {  // mapping from redux state to props state (see reducers/index.js) thus argument state is from redux storage
+    return {
+        photos: state.photos        
+    }
+}
+export default connect(mapStateToProps, {getPhotos})(PhotoFeed);
