@@ -7,3 +7,4 @@ $ npm install
 
 $ yarn run ios
 
+$ yarn add react-native-vector-icons
