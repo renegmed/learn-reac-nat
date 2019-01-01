@@ -3,19 +3,13 @@ import { View } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
 import InnerSection from './Inner-Section'; 
-import { authInputChange } from '../actions';
+import { authInputChange, login } from '../actions';
 import { connect } from 'react-redux';
 import  {API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID} from '../../Config';
 
 class LoginForm extends React.Component {
     
-    componentDidMount() {
-        // console.log(API_KEY);
-        // console.log(AUTH_DOMAIN);
-        // console.log(DATABASE_URL);
-        // console.log(PROJECT_ID);
-        // console.log(STORAGE_BUCKET);
-        // console.log(MESSAGING_SENDER_ID);
+    componentDidMount() { 
 
         const config = {
             apiKey: API_KEY,
@@ -24,11 +18,17 @@ class LoginForm extends React.Component {
             projectId: PROJECT_ID,
             storageBucket: STORAGE_BUCKET,
             messagingSenderId: MESSAGING_SENDER_ID
-          };
-          firebase.initializeApp(config);
+        };
+        firebase.initializeApp(config);
         
     }
     
+    login() {
+        //console.log(this.props);
+        const { email, password } = this.props;
+        this.props.login({email, password});
+    }
+
     render() {
         return (
             <View style={styles.container}> 
@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
                         })}/>
                 </InnerSection>
                 <InnerSection>
-                    <Button title="Login" onPress={() => console.log(this.props.email)} backgroundColor={'#3bd3d4'}/>
+                    <Button title="Login" onPress={this.login.bind(this)} backgroundColor={'#3bd3d4'}/>
                 </InnerSection>    
             </View>
         ) 
@@ -68,4 +68,4 @@ const mapStateToProps = state => {      // state are from reducers/Authenticatio
         password: state.auth.password, 
     }
 }
-export default connect(mapStateToProps, {authInputChange})(LoginForm);
+export default connect(mapStateToProps, {authInputChange, login})(LoginForm);
