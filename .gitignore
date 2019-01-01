@@ -25,5 +25,5 @@ ideapad/*.swp
 ideapad/.expo
 ideapad/.env
 ideapad/ios
-ideapad/Config.js
+ideapad/config/Config.js
 
