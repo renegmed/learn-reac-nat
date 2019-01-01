@@ -4,6 +4,7 @@ import { Button, FormInput } from 'react-native-elements';
 import InnerSection from './Inner-Section'; 
 import { ideaInputChange, createIdea } from '../actions';
 import { connect } from 'react-redux';
+import IdeaList from './Idea-List';
  
 class IdeaPadForm extends React.Component {
     
@@ -20,6 +21,7 @@ class IdeaPadForm extends React.Component {
         }
         return (
             <View style={styles.container}> 
+                <IdeaList />
                 <InnerSection>
                     <FormInput placeholder="Title" 
                         value={this.props.title}
