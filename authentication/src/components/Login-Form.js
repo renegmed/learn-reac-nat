@@ -33,20 +33,23 @@ class LoginForm extends React.Component {
         return (
             <View style={styles.container}> 
                 <InnerSection>
-                    <FormInput placeholder="Email" onChangeText={text => this.props.authInputChange({
-                        'field': 'email',
-                        'value': text,
+                    <FormInput placeholder="Email" 
+                        value={this.props.email}
+                        onChangeText={text => this.props.authInputChange({
+                            'field': 'email',
+                            'value': text,
                         })}/>
                 </InnerSection>
                 <InnerSection>
-                    <FormInput placeholder="Password" secureTextEntry={true} 
+                    <FormInput placeholder="Password" secureTextEntry={true}
+                        value={this.props.password}
                         onChangeText={text => this.props.authInputChange({
                             'field': 'password',
                             'value': text,
                         })}/>
                 </InnerSection>
                 <InnerSection>
-                    <Button title="Login" backgroundColor={'#3bd3d4'}/>
+                    <Button title="Login" onPress={() => console.log(this.props.email)} backgroundColor={'#3bd3d4'}/>
                 </InnerSection>    
             </View>
         ) 
@@ -59,4 +62,10 @@ const styles = {
     }
 }
 
-export default connect(null, {authInputChange})(LoginForm);
+const mapStateToProps = state => {      // state are from reducers/Authentication-Reducer.js -> reducers/index.js 
+    return { 
+        email: state.auth.email,
+        password: state.auth.password, 
+    }
+}
+export default connect(mapStateToProps, {authInputChange})(LoginForm);

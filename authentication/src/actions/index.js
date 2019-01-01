@@ -1,7 +1,7 @@
-export const authInputChange = (obj) => {
+export const authInputChange = ({field, value}) => {
     return {
         type: 'AUTH_INPUT_CHANGE',
-        payload: obj,   // field: 'email', 'text': 'test@mytest.com'
+        payload: {field, value},   // field: 'email', value: 'test@mytest.com'
 
     }
 }
