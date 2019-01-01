@@ -10,6 +10,7 @@ export const authInputChange = ({field, value}) => {
 
 export const login = ({ email, password }) => {
     return (dispatch) => { 
+        dispatch({type: 'LOADING'});
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(user => {
                 dispatch({type: 'LOGIN_SUCCESS', payload: user});  // this goes to reducers

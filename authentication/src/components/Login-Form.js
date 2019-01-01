@@ -1,6 +1,6 @@
 import React from 'react'; 
-import { View } from 'react-native'; 
-import { Button, FormInput } from 'react-native-elements';
+import { View, ActivityIndicator } from 'react-native'; 
+import { Button, FormInput, FormValidationMessage } from 'react-native-elements';
 import firebase from 'firebase';
 import InnerSection from './Inner-Section'; 
 import { authInputChange, login } from '../actions';
@@ -29,6 +29,27 @@ class LoginForm extends React.Component {
         this.props.login({email, password});
     }
 
+    showButton() {
+        if (this.props.loading) {
+            return (
+                <View>
+                    <ActivityIndicator size={'small'} />
+                </View>
+            );
+        }
+
+        return (
+            <Button title="Login" onPress={this.login.bind(this)} backgroundColor={'#3bd3d4'}/>
+        ); 
+    }
+
+    showError() {
+        if (this.props.error) {
+            return (
+                <FormValidationMessage>{this.props.error}</FormValidationMessage>
+            )
+        }
+    }
     render() {
         return (
             <View style={styles.container}> 
@@ -48,8 +69,9 @@ class LoginForm extends React.Component {
                             'value': text,
                         })}/>
                 </InnerSection>
+                {this.showError()}
                 <InnerSection>
-                    <Button title="Login" onPress={this.login.bind(this)} backgroundColor={'#3bd3d4'}/>
+                    {this.showButton()}
                 </InnerSection>    
             </View>
         ) 
@@ -62,10 +84,14 @@ const styles = {
     }
 }
 
+
 const mapStateToProps = state => {      // state are from reducers/Authentication-Reducer.js -> reducers/index.js 
     return { 
         email: state.auth.email,
-        password: state.auth.password, 
+        password: state.auth.password,
+        loading: state.auth.loading,
+        user: state.auth.user,
+        error: state.auth.error 
     }
 }
 export default connect(mapStateToProps, {authInputChange, login})(LoginForm);
