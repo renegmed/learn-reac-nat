@@ -13,4 +13,7 @@ authentication/package-lock.json
 authentication/yarn.lock
 authentication/*.swp
 authentication/.expo
+authentication/.env
 authentication/ios
+authentication/Config.js
+

@@ -5,17 +5,25 @@ import firebase from 'firebase';
 import InnerSection from './Inner-Section'; 
 import { authInputChange } from '../actions';
 import { connect } from 'react-redux';
+import  {API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID} from '../../Config';
 
 class LoginForm extends React.Component {
     
     componentDidMount() {
+        // console.log(API_KEY);
+        // console.log(AUTH_DOMAIN);
+        // console.log(DATABASE_URL);
+        // console.log(PROJECT_ID);
+        // console.log(STORAGE_BUCKET);
+        // console.log(MESSAGING_SENDER_ID);
+
         const config = {
-            apiKey: "AIzaSyAjH5pEnkugf2EVk9LJSNAPXKle-3Q-jIE",
-            authDomain: "authentication-2d360.firebaseapp.com",
-            databaseURL: "https://authentication-2d360.firebaseio.com",
-            projectId: "authentication-2d360",
-            storageBucket: "authentication-2d360.appspot.com",
-            messagingSenderId: "677531134728"
+            apiKey: API_KEY,
+            authDomain: AUTH_DOMAIN,
+            databaseURL: DATABASE_URL,
+            projectId: PROJECT_ID,
+            storageBucket: STORAGE_BUCKET,
+            messagingSenderId: MESSAGING_SENDER_ID
           };
           firebase.initializeApp(config);
         
