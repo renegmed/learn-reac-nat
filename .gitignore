@@ -17,3 +17,13 @@ authentication/.env
 authentication/ios
 authentication/Config.js
 
+
+ideapad/node_modules
+ideapad/package-lock.json
+ideapad/yarn.lock
+ideapad/*.swp
+ideapad/.expo
+ideapad/.env
+ideapad/ios
+ideapad/Config.js
+

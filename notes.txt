@@ -48,3 +48,20 @@ Firebase - communicate with backend database api
     $ yarn add firebase 
     
 
+Project: ideapad
+
+firebase rule:
+
+    {
+      "rules": {
+        "userIdeas": {
+          "$user_id": {
+            	".read": "$user_id === auth.uid",
+              ".write": "$user_id === auth.uid"
+          }
+        }
+      }
+    }
+
+
+
