@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import LoginForm from './components/Login-Form';
 import IdeaList from './components/Idea-List';
-import IdeaPadForm from './components/IdeaPad-Form'; 
+import AddIdea from './components/Add-Idea'; 
+import EditIdea from './components/Edit-Idea';
+
 import { Icon } from 'react-native-elements';
 
 const AuthStack = createStackNavigator({ 
@@ -35,9 +37,15 @@ const AppStack = createStackNavigator({
         } 
     },
     AddIdeas: {
-        screen: IdeaPadForm,
+        screen: AddIdea,
         navigationOptions: {
             headerTitle: 'Add your Ideas'
+        }
+    },
+    EditIdea: {
+        screen: EditIdea,
+        navigationOptions: {
+            headerTitle: 'Edit your idea'
         }
     }
 });

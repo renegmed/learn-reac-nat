@@ -12,6 +12,9 @@ export default (state = initialState, action) => {
         case 'NEW_IDEA':
             return initialState;
 
+        case 'IDEA_UPDATED':
+            return initialState;
+
         default:
             return state;
     }

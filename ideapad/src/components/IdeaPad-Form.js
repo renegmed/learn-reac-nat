@@ -1,17 +1,12 @@
 import React from 'react'; 
-import { View, ActivityIndicator } from 'react-native'; 
-import { Button, FormInput } from 'react-native-elements'; 
+import { View } from 'react-native'; 
+import { FormInput } from 'react-native-elements'; 
 import InnerSection from './Inner-Section'; 
-import { ideaInputChange, createIdea } from '../actions';
+import { ideaInputChange, createIdea, editIdea } from '../actions';
 import { connect } from 'react-redux'; 
 
 class IdeaPadForm extends React.Component {
-    
-    create() {  
-        const { title, idea } = this.props;
-        this.props.createIdea({title, idea});
-    }
- 
+     
     render() {
         if (this.props.user) {
             return (
@@ -19,7 +14,7 @@ class IdeaPadForm extends React.Component {
             );
         }
         return (
-            <View style={styles.container}>  
+            <View>  
                 <InnerSection>
                     <FormInput placeholder="Title" 
                         value={this.props.title}
@@ -38,21 +33,11 @@ class IdeaPadForm extends React.Component {
                         multiline={true}
                         inputStyle={{height:200}}
                     />
-                </InnerSection> 
-                <InnerSection>
-                    <Button title="Submit" onPress={this.create.bind(this)} backgroundColor={'#3bd3d4'}/>
-                </InnerSection>    
+                </InnerSection>  
             </View>
         ) 
     }
-}
-
-const styles = {
-    container: {
-        marginTop: 50
-    }
-}
-
+} 
 
 const mapStateToProps = state => {      // state are from reducers/Authentication-Reducer.js -> reducers/index.js 
     return { 
@@ -61,4 +46,4 @@ const mapStateToProps = state => {      // state are from reducers/Authenticatio
         
     }
 }
-export default connect(mapStateToProps, {ideaInputChange, createIdea})(IdeaPadForm);
+export default connect(mapStateToProps, {ideaInputChange, createIdea, editIdea})(IdeaPadForm);

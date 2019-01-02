@@ -50,3 +50,13 @@ export const getIdeas = () => {
             
     }
 }
+
+export const editIdea = ( {title, idea, id} ) => {
+    const { uid } = firebase.auth().currentUser;
+
+    return (dispatch) => {
+        firebase.database().ref(`/userIdeas/${uid}/ideas/${id}`)
+            .set({title, idea})
+            .then( () => dispatch({type: 'IDEA_UPDATED'}));            
+    }
+}

@@ -10,13 +10,12 @@ class IdeaList extends Component {
     }
 
     renderList() {
-        console.log("[IdeaList] ", this.props.ideas);
-
         return this.props.ideas.map( (idea) => { 
             return (
                 <ListItem 
                     key={idea.id}
                     title={idea.title}
+                    onPress={ () => this.props.navigation.navigate('EditIdea', { idea })}
                     leftIcon={{name: 'lightbulb-outline'}}                 
                 /> 
             );
