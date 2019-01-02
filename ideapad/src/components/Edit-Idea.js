@@ -1,8 +1,8 @@
 import React from 'react'; 
-import { View, ActivityIndicator } from 'react-native'; 
-import { Button, FormInput } from 'react-native-elements'; 
+import { View } from 'react-native'; 
+import { Button } from 'react-native-elements'; 
 import InnerSection from './Inner-Section'; 
-import { ideaInputChange, createIdea, editIdea } from '../actions';
+import { ideaInputChange, editIdea, deleteIdea } from '../actions';
 import { connect } from 'react-redux'; 
 import IdeaPad from './IdeaPad-Form';
 import _ from 'lodash';
@@ -19,8 +19,14 @@ class EditIdea extends React.Component {
         const { id } = this.props.navigation.state.params.idea;
         const { title, idea } = this.props;
         this.props.editIdea({title, idea, id});
+        this.props.navigation.navigate("Ideas");
     }
  
+    delete() {
+        const { id } = this.props.navigation.state.params.idea; 
+        this.props.deleteIdea({id});
+        this.props.navigation.navigate("Ideas");
+    }
     render() {
         if (this.props.user) {
             return (
@@ -34,7 +40,7 @@ class EditIdea extends React.Component {
                     <Button title="Save" onPress={this.edit.bind(this)} backgroundColor={'#3bd3d4'}/>
                 </InnerSection> 
                 <InnerSection>
-                    <Button title="Delete" onPress={this.edit.bind(this)} backgroundColor={'#ef2b35'}/>
+                    <Button title="Delete" onPress={this.delete.bind(this)} backgroundColor={'#ef2b35'}/>
                 </InnerSection>      
             </View>
         ) 
@@ -54,4 +60,4 @@ const mapStateToProps = state => {      // state are from reducers/Authenticatio
         
     }
 }
-export default connect(mapStateToProps, {ideaInputChange, createIdea, editIdea})(EditIdea);
+export default connect(mapStateToProps, {ideaInputChange, editIdea, deleteIdea })(EditIdea);

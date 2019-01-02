@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-//import { StackNavigator, SwitchNavigator } from 'react-navigation';
+import React from 'react'; 
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import LoginForm from './components/Login-Form';
 import IdeaList from './components/Idea-List';

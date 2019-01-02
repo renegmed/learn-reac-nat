@@ -2,17 +2,13 @@ import React from 'react';
 import { View } from 'react-native'; 
 import { FormInput } from 'react-native-elements'; 
 import InnerSection from './Inner-Section'; 
-import { ideaInputChange, createIdea, editIdea } from '../actions';
+import { ideaInputChange, createIdea } from '../actions';
 import { connect } from 'react-redux'; 
 
 class IdeaPadForm extends React.Component {
      
     render() {
-        if (this.props.user) {
-            return (
-                <IdeaPadForm />
-            );
-        }
+       
         return (
             <View>  
                 <InnerSection>
@@ -46,4 +42,4 @@ const mapStateToProps = state => {      // state are from reducers/Authenticatio
         
     }
 }
-export default connect(mapStateToProps, {ideaInputChange, createIdea, editIdea})(IdeaPadForm);
+export default connect(mapStateToProps, {ideaInputChange, createIdea})(IdeaPadForm);

@@ -60,3 +60,13 @@ export const editIdea = ( {title, idea, id} ) => {
             .then( () => dispatch({type: 'IDEA_UPDATED'}));            
     }
 }
+
+export const deleteIdea = ({ id }) => {
+    const { uid } = firebase.auth().currentUser;
+
+    return (dispatch) => {
+        firebase.database().ref(`/userIdeas/${uid}/ideas/${id}`)
+            .remove() 
+            .then( () => dispatch({type: 'IDEA_DELETED'}));            
+    }
+}

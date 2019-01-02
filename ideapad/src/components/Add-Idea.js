@@ -1,6 +1,6 @@
 import React from 'react'; 
-import { View, ActivityIndicator } from 'react-native'; 
-import { Button, FormInput } from 'react-native-elements'; 
+import { View } from 'react-native'; 
+import { Button } from 'react-native-elements'; 
 import InnerSection from './Inner-Section'; 
 import { ideaInputChange, createIdea } from '../actions';
 import { connect } from 'react-redux'; 
@@ -11,6 +11,7 @@ class AddIdea extends React.Component {
     create() {  
         const { title, idea } = this.props;
         this.props.createIdea({title, idea});
+        this.props.navigation.navigate("Ideas");
     }
  
     render() {

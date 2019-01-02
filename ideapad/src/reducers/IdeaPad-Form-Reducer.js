@@ -15,6 +15,9 @@ export default (state = initialState, action) => {
         case 'IDEA_UPDATED':
             return initialState;
 
+        case 'IDEA_DELETED':
+            return initialState;
+            
         default:
             return state;
     }
