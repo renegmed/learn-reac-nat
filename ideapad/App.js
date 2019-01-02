@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import firebase from 'firebase';
-import IdeaPadForm from './src/components/IdeaPad-Form';
-import Header from './src/components/Header';
+import { StyleSheet } from 'react-native';
+import firebase from 'firebase'; 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import reducers from './src/reducers';
 import config from './config';
+import AppNavigator from './src/Navigation';
+import { createAppContainer } from 'react-navigation';
 
 export default class App extends React.Component {
  
@@ -16,15 +16,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    
+
+    const AppContainer = createAppContainer(AppNavigator);
+
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     return (
       <Provider store={store}>
-        <View>
-          <Header text="Login" />
-          <IdeaPadForm />
-        </View>
+        <AppContainer /> 
       </Provider>
     );
   }

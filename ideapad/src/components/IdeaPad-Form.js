@@ -3,9 +3,8 @@ import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput } from 'react-native-elements'; 
 import InnerSection from './Inner-Section'; 
 import { ideaInputChange, createIdea } from '../actions';
-import { connect } from 'react-redux';
-import IdeaList from './Idea-List';
- 
+import { connect } from 'react-redux'; 
+
 class IdeaPadForm extends React.Component {
     
     create() {  
@@ -20,8 +19,7 @@ class IdeaPadForm extends React.Component {
             );
         }
         return (
-            <View style={styles.container}> 
-                <IdeaList />
+            <View style={styles.container}>  
                 <InnerSection>
                     <FormInput placeholder="Title" 
                         value={this.props.title}

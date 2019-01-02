@@ -64,4 +64,10 @@ firebase rule:
     }
 
 
+React Navigation
 
+    $ yarn add react-navigation
+
+    https://reactnavigation.org/docs/navigating.html
+
+    $ yarn add lodash
