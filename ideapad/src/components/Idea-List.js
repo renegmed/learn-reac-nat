@@ -1,30 +1,45 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'react-native-elements';
-import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { getIdeas } from '../actions';
+import _ from 'lodash';
 
-export default class IdeaList extends Component {
+class IdeaList extends Component {
+    componentDidMount() {
+        this.props.getIdeas();
+    }
+
+    renderList() {
+        console.log("[IdeaList] ", this.props.ideas);
+
+        return this.props.ideas.map( (idea) => { 
+            return (
+                <ListItem 
+                    key={idea.id}
+                    title={idea.title}
+                    leftIcon={{name: 'lightbulb-outline'}}                 
+                /> 
+            );
+        });
+    }
     render() {
         return (
             <List containerStyle={{marginTop: 0}}>
-                <ListItem
-                    title={'Dummy'} 
-                    leftIcon={{name: 'lightbulb-outline'}} 
-                />
-                <ListItem
-                    title={'Dummy 1'} 
-                    leftIcon={{name: 'lightbulb-outline'}} 
-                />
-                <ListItem
-                    title={'Dummy 2'} 
-                    leftIcon={{name: 'lightbulb-outline'}} 
-                />
-                <ListItem
-                    title={'Dummy 3'} 
-                    leftIcon={{name: 'lightbulb-outline'}} 
-                />
-            </List>
-            
- 
+                {this.renderList()}
+            </List>  
         );
     }
 }
+
+function mapStateToProps(state) {
+    // state.ideas 
+    // sdfgwerfsd: {title:kjkljk, idea:gfdftf}
+    const ideas = _.map(state.ideas, (val, id) => {
+        val['id'] = id;
+        return val;
+    })
+ 
+    return { ideas }
+}
+
+export default connect(mapStateToProps, { getIdeas })(IdeaList);

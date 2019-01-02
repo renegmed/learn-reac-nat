@@ -20,7 +20,7 @@ const AppStack = createStackNavigator({
         screen: IdeaList,
         navigationOptions: ({navigation}) => {
             return {
-                title: 'Back',
+                title: 'Your IdeaPad',
                 headerRight: (
                     <Icon 
                         type='evilicon'

@@ -37,4 +37,16 @@ export const createIdea = ({title, idea}) => {
             .push({title, idea})
             .then(() => dispatch({type: 'NEW_IDEA'}));
     }
+} 
+
+export const getIdeas = () => {
+    const { uid } = firebase.auth().currentUser;
+
+    return (dispatch) => {
+        firebase.database().ref(`/userIdeas/${uid}/ideas`)
+            .on('value', snapshot => {
+                dispatch({type: 'GET_IDEAS', payload: snapshot.val()});
+            });
+            
+    }
 }
